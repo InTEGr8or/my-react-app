@@ -14,13 +14,6 @@ function Square(props) {
 }
   
 class Board extends React.Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			squares: Array(9).fill(null),
-			xIsNext: true,
-		};
-	}
 	renderSquare(i) {
 		return (
 			<Square 
@@ -87,7 +80,7 @@ class Board extends React.Component {
 			const moves = history.map((step, move) => {
 				const desc = move ? `Go to move #${move}` : "Go to game start";
 				return (
-					<li>
+					<li key={move}>
 						<button onClick={() => this.jumpTo(move)}>{desc}</button>
 					</li>
 				);
@@ -140,6 +133,6 @@ class Board extends React.Component {
 			if (squares && squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
 				return squares[a];
 			}
-			return null;
 		}
+		return null;
 	}
